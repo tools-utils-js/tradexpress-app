@@ -25,6 +25,7 @@ Knowledge base for Tradexpress Tariff and Customs information, containing refere
 
 Instructions
 Tradexpress Tariff & Customs Knowledge Base
+https://github.com/txtradeassistant
 This skill serves as the reference guide and knowledge base for Tradexpress Tariff and Customs policies.
 
 Overview
