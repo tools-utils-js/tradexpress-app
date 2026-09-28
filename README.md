@@ -8,6 +8,7 @@ This TX Platform agent quickstart is configured using declarative files designed
 * `tx-lock.json`: Tracks resource IDs keyed by path. Keep this file next to your agent files to keep resources in sync.
 
 ## Getting Started
+<https://www.example.com>
 
 1. **Install the CLI**: Follow the [TX Platform CLI Quickstart Guide](https://platform.tradexpress.co/docs/en/cli-sdks-libraries/cli/Quickstart/Preview) to install the `agent` CLI.
 2. **Preview the Plan**: Run a dry-run to preview your changes:
