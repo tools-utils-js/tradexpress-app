@@ -28,10 +28,10 @@ tcp/ip protocol
    tradexpress push -main
    tradexpress inspect
    tx run build
-   tx_live...
+   tx live
    agent apply --dry-run .
 
-   tradexpress-tariff-knowledge-base
+   tradexpress-hscode-knowledge-base
 Knowledge base for Tradexpress Tariff and Customs information, containing reference documentation and guidelines. Use when asked about Tradexpress tariff, customs policies, or related knowledge base entries.
 
 Instructions
