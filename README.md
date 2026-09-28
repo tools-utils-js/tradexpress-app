@@ -20,7 +20,7 @@ tcp/ip protocol
 ## Getting Started
 <https://www.tradexpress.co>
 
-1. **Install the CLI**: Follow the [TX Platform CLI Quickstart Guide](https://platform.tradexpress.co/docs/en/cli-sdks-libraries/cli/Quickstart/Preview) to install the `agent` CLI.
+1. **Install the CLI**: Follow the [TX Platform CLI Quickstart Guide](#https://platform.tradexpress.co/docs/en/cli-sdks-libraries/cli/Quickstart/Preview) to install the `agent` CLI.
 2. **Preview the Plan**: Run a dry-run to preview your changes:
    ```sh
    node cli.js
