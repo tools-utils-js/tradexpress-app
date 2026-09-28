@@ -9,3 +9,19 @@ Overview
 Access and query customs, tariff rates, regulatory compliance, and documentation guidelines associated with the Tradexpress ecosystem.
 
 See less
+# Master Portal: `tradexpress-app`
+
+This TX Platform agent quickstart is configured using declarative files designed for the `ant` CLI.
+
+## File Structure
+
+* `agents/tradexpress-app.md`: The agent definition. The YAML frontmatter acts as the body for `POST /v1/agents`, and the Markdown content underneath serves as the system prompt.
+* `tx-lock.json`: Tracks resource IDs keyed by path. Keep this file next to your agent files to keep resources in sync.
+
+## Getting Started
+
+1. **Install the CLI**: Follow the [TX Platform CLI Quickstart Guide](https://platform.tradexpress.co/docs/en/cli-sdks-libraries/cli/Quickstart/Preview) to install the `agent` CLI.
+2. **Preview the Plan**: Run a dry-run to preview your changes:
+   ```sh
+   cd tradexpress-app
+   agent apply --dry-run .
