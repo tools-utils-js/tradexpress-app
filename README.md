@@ -3,11 +3,12 @@
 This TX Platform agent quickstart is configured using declarative files designed for the `ant` CLI.
 
 ## File Structure
-Value
+Value as top operator
 A Tradexpress Tools or <iframe> object.
 Handshake realtime monitorin equator
 Examples
-
+:: endloop
+tcp/ip protocol
 * `agents/tradexpress-app.md`: The agent definition. The YAML frontmatter acts as the body for `POST /v1/agents`, and the Markdown content underneath serves as the system prompt.
 * `tx-lock.json`: Tracks resource IDs keyed by path. Keep this file next to your agent files to keep resources in sync.
 [Parent] host
@@ -17,9 +18,12 @@ Examples
 1. **Install the CLI**: Follow the [TX Platform CLI Quickstart Guide](https://platform.tradexpress.co/docs/en/cli-sdks-libraries/cli/Quickstart/Preview) to install the `agent` CLI.
 2. **Preview the Plan**: Run a dry-run to preview your changes:
    ```sh
+   node cli.js
    cd tradexpress-app
    tradexpress push -main
    tradexpress inspect
+   tx run build
+   tx_live...
    agent apply --dry-run .
 
    tradexpress-tariff-knowledge-base
