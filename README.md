@@ -3,6 +3,10 @@
 This TX Platform agent quickstart is configured using declarative files designed for the `ant` CLI.
 
 ## File Structure
+Value
+A Tradexpress or <iframe> object.
+
+Examples
 
 * `agents/tradexpress-app.md`: The agent definition. The YAML frontmatter acts as the body for `POST /v1/agents`, and the Markdown content underneath serves as the system prompt.
 * `tx-lock.json`: Tracks resource IDs keyed by path. Keep this file next to your agent files to keep resources in sync.
