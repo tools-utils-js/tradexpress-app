@@ -1,11 +1,11 @@
-# Master Portal: `tradexpress-app`<https://api.tradexpress.co/#network>
+# Master Portal: `tradexpress-app`[https://api.tradexpress.co/#network]
 
 This TX Platform agent quickstart is configured using declarative files designed for the `ant` CLI.
 
 ## File Structure
 Value
-A Tradexpress or <iframe> object.
-
+A Tradexpress Tools or <iframe> object.
+Handshake realtime monitorin equator
 Examples
 
 * `agents/tradexpress-app.md`: The agent definition. The YAML frontmatter acts as the body for `POST /v1/agents`, and the Markdown content underneath serves as the system prompt.
@@ -25,7 +25,7 @@ Knowledge base for Tradexpress Tariff and Customs information, containing refere
 
 Instructions
 Tradexpress Tariff & Customs Knowledge Base
-https://github.com/txtradeassistant
+https://github.com/tx.tradeassistant@gmail.com
 This skill serves as the reference guide and knowledge base for Tradexpress Tariff and Customs policies.
 
 Overview
