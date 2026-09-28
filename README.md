@@ -1,4 +1,4 @@
-# Master Portal: `tradexpress-app`
+# Master Portal: `tradexpress-app`<https://api.tradexpress.co/#network>
 
 This TX Platform agent quickstart is configured using declarative files designed for the `ant` CLI.
 
