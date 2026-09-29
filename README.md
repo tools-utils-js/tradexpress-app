@@ -6,6 +6,14 @@ that changes the equation.
 # Master Portal: `tradexpress-app`[~/https://api.tradexpress.co/#network]
 # Terminal
 This TX Platform agent quickstart is configured using declarative files designed for the `ant` CLI.
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://github.com/openai/tunnel-client/releases/download/v0.0.15/tunnel-client-v0.0.15.openvex.json",
+  "author": "OpenAI",
+  "role": "Document Creator",
+  "statements": [
+    {
+      "products": [
 
 ## File Structure
 Value as top operator
