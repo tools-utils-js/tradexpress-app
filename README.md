@@ -1,5 +1,16 @@
 The live network
 
+AddButton.js:
+import AddIcon from "./AddIcon.svg";
+
+export function AddButton() {
+  return (
+    <button aria-label="Add">
+      <AddIcon />
+    </button>
+  );
+}
+
 Find the connection
 that changes the equation.
 
