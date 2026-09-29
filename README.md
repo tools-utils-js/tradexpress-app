@@ -1,5 +1,5 @@
 The live network
-
+<iframe>
 AddButton.js:
 import AddIcon from "./AddIcon.svg";
 
@@ -10,6 +10,7 @@ export function AddButton() {
     </button>
   );
 }
+</iframe>
 
 Find the connection
 that changes the equation.
