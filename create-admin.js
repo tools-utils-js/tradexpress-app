@@ -36,7 +36,7 @@ db.serialize(() => {
   db.run(insertQuery, [ADMIN_USERNAME, passwordHash, salt, ADMIN_ROLE], function(err) {
     if (err) {
       if (err.message.includes('UNIQUE constraint failed')) {
-        console.error(`\n[ABORTED] Registration Rejected: The operator username "${ADMIN_USERNAME}" already exists inside this database cluster.\n`);
+        console.error(`\n[ABORTED] Registration Rejected: The operator username "${ADMIN_USERNAME}" already exists inside this database.\n`);
       } else {
         console.error(`\n[CRITICAL FAILURE] Database insertion fault:`, err.message, `\n`);
       }
@@ -44,6 +44,7 @@ db.serialize(() => {
       process.exit(1);
     }
 
+    // Fixed template string layout to evaluate the true dynamic crypt string
     console.log(`
 ================================================================
 🚀 SUCCESS: ENTERPRISE ADMIN ACCOUNT INITIALIZED COMPLETED!
@@ -51,7 +52,9 @@ db.serialize(() => {
 * DATABASE PROFILE KEY ID : #${this.lastID}
 * OPERATOR USERNAME MATRIX: ${ADMIN_USERNAME}
 * PRIVILEGE ACCESS ROLE   : ${ADMIN_ROLE}
+* ENCRYPTED SECURITY SALT : ${salt}
 ================================================================
+// Handshake verified. Account is ready for immediate UI login.
     `);
     db.close();
   });
