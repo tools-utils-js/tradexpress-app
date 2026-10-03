@@ -1,64 +1,13 @@
-// SECURE JWT USER AUTHENTICATION MODULE LAYER ==========================================
-const crypto = require('crypto');
-// Setup local schema structure tables for user record metrics
-db.serialize(() => { db.run(` CREATE TABLE IF NOT EXISTS users ( id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password_hash TEXT, salt TEXT, role TEXT DEFAULT 'standard', created_at DATETIME DEFAULT CURRENT_TIMESTAMP ) `);
-});
-/** * Helper Subroutine: Generates PBKDF2 cryptography hashes safely */ function hashPassword(password, salt) { return crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
-}
-/** * Helper Subroutine: Encodes secure, expiring base64 JWT signatures */ function generateJsonWebToken(userPayload) { const header = Buffer.from(JSON.stringify({ alg: 'HS256', typ: 'JWT' })).toString('base64url'); const payload = Buffer.from(JSON.stringify({ ...userPayload,
-    exp: Math.floor(Date.now() / 1000) + (60 * 60 * 2) // Expires in 2 hours
-  })).toString('base64url');
-  
-  // High-entropy sign token token contract secret key
-  const secret = "KENWELL_TX_CORE_HIGH_ENTROPY_SECRET_MATRIX_KEY_2026";
-  const signature = crypto.createHmac('sha256', secret)
-    .update(`${header}.${payload}`)
-    .digest('base64url');
-    
-  return `${header}.${payload}.${signature}`;
-}
-
-/**
- * POST /api/auth/register
- * Enterprise endpoint to safely ingest and store new operator profile entries
- */
-app.post('/api/auth/register', (req, res) => {
-  const { username, password, role } = req.body;
-  if (!username || !password) {
-    return res.status(400).json({ success: false, error: "Validation Fault: Missing fields." });
-  }
-
-  const salt = crypto.randomBytes(16).toString('hex');
-  const password_hash = hashPassword(password, salt);
-
-  const insertStmt = "INSERT INTO users (username, password_hash, salt, role) VALUES (?, ?, ?, ?)";
-  db.run(insertStmt, [username, password_hash, salt, role || 'standard'], function(err) {
-    if (err) {
-      return res.status(400).json({ success: false, error: "Registration Rejected: Operator index profile already exists." });
-    }
-    res.json({ success: true, message: "Operator profile logged into security cluster.", userId: this.lastID });
-  });
-});
-
-/**
- * POST /api/auth/login
- * Validates credentials and generates an authenticated communication session access token
- */
-app.post('/api/auth/login', (req, res) => {
-  const { username, password } = req.body;
-  
-  db.get("SELECT * FROM users WHERE username = ?", [username], (err, user) => {
-    if (err || !user) {
-      return res.status(401).json({ success: false, error: "Authentication Failure: Access denied." });
-    }
-
-    const testHash = hashPassword(password, user.salt);
-    if (testHash !== user.password_hash) {
-      return res.status(401).json({ success: false, error: "Authentication Failure: Invalid signature parameters." });
-    }
-
-    // Generate token signature asset blocks for client validation
-    const token = generateJsonWebToken({ id: user.id, username: user.username, role: user.role });
-    res.json({
-      success: true,
-      messag
+Action	Description
+Continue or Pause
+F5	Resume execution until the next breakpoint, or pause a running program.
+Step Over
+F10	Run the current line without stepping into function calls on that line.
+Step Into
+F11	Step into the function called on the current line.
+Step Out
+Shift+F11	Finish the current function and pause in the calling function.
+Restart
+Ctrl+Shift+F5	Stop and start the application again with the current debug configuration.
+Stop
+Shift+F5	End the current debugging session.
