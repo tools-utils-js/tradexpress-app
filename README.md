@@ -1,66 +1,178 @@
-The live network
-<iframe>
-AddButton.js:
-import AddIcon from "./AddIcon.svg";
+# TxBot Chatbot UI
 
-export function AddButton() {
-  return (
-    <button aria-label="Add">
-      <AddIcon />
-    </button>
-  );
+A responsive web-based chatbot interface for the TxBot token management platform.
+
+## Features
+
+✨ **Modern Interface**
+- Clean, gradient-based design
+- Responsive mobile-friendly layout
+- Smooth animations and transitions
+
+💬 **Chat Functionality**
+- Real-time message display
+- User and bot message differentiation
+- Automatic scrolling to latest messages
+- Timestamp for each message
+- Conversation history with selectable topics and short IDs, saved in the current browser
+- Welcome greeting defaults to `Debugger`; users can change the display name, which is saved locally in the current browser
+
+🎯 **Quick Start**
+- Requires Node.js 18+ and npm
+- Uses Vite for local development and production builds
+- Easy to customize
+
+## Files
+
+- `index.html` - Main chatbot interface
+- `styles.css` - Styling and animations
+- `script.js` - Chat logic and message handling
+- `README.md` - This file
+
+## Usage
+
+1. Run `npm ci` from `chatbot.ui/`
+2. Run `npm run dev -- --host 0.0.0.0`
+3. Open the local URL printed by Vite
+4. Set your first name in the welcome prompt if desired
+5. Type a message or choose a quick prompt
+
+The demo does not have authentication and cannot read a server-side account name. The optional first name is stored in the browser only.
+
+## Customize
+
+### Change Colors
+Edit the gradient in `styles.css`:
+```css
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+```
+
+### Add Bot Responses
+Edit `botResponses` in `script.js`:
+```javascript
+const botResponses = {
+    'your-keyword': 'Your custom response',
+    // ...
+};
+```
+
+### Change Bot Name
+Update `<title>` and `.chat-header h1` in `index.html`
+
+## Integration
+
+To connect to a real backend:
+
+1. Replace the `getBotResponse()` function in `script.js` with an API call:
+```javascript
+async function getBotResponse(userMessage) {
+    const response = await fetch('/api/chat', {
+        method: 'POST',
+        body: JSON.stringify({ message: userMessage })
+    });
+    const data = await response.json();
+    return data.reply;
 }
-</iframe>
+```
 
-Find the connection
-that changes the equation.
+2. Update the chat form handler to use `await`
 
-# Master Portal: `tradexpress-app`[~/https://api.tradexpress.co/#network]
-# Terminal
-This TX Platform agent quickstart is configured using declarative files designed for the `ant` CLI.
-{
-  "@context": "https://openvex.dev/ns/v0.2.0",
-  "@id": "https://github.com/openai/tunnel-client/releases/download/v0.0.15/tunnel-client-v0.0.15.openvex.json",
-  "author": "OpenAI",
-  "role": "Document Creator",
-  "statements": [
-    {
-      "products": [
+## Browser Support
 
-## File Structure
-Value as top operator
-A Tradexpress Tools or <iframe> object.
-Handshake realtime monitorin equator
-Examples
-:: endloop
-tcp/ip protocol
-* `agents/tradexpress-app.md`: The agent definition. The YAML frontmatter acts as the body for `POST /v1/agents`, and the Markdown content underneath serves as the system prompt.
-* `tx-lock.json`: Tracks resource IDs keyed by path. Keep this file next to your agent files to keep resources in sync.
-[Parent] host
-## Getting Started
-<https://www.tradexpress.co>
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
 
-1. **Install the CLI**: Follow the [TX Platform CLI Quickstart Guide.cli](https://platform.tradexpress.co/docs/en/cli-sdks-libraries/cli/Quickstart/Preview) to install the `agent` CLI.
-2. **Preview the Plan**: Run a dry-run to preview your changes:
-   ```sh
-   node cli.js
-   cd tradexpress-app
-   tradexpress push -main
-   tradexpress inspect
-   tx run build
-   tx live
-   agent apply --dry-run .
+## Demo
 
-   tradexpress-hscode-knowledge-base
-Knowledge base for Tradexpress Tariff and Customs information, containing reference documentation and guidelines. Use when asked about Tradexpress tariff, customs policies, or related knowledge base entries.
+You can test the chatbot locally:
+1. Install Node.js 18+ and npm
+2. Navigate to the `chatbot.ui` directory
+3. Run `npm ci`
+4. Run `npm run dev -- --host 0.0.0.0`
+5. Open the local URL printed by Vite
 
-Instructions
-Tradexpress Tariff & Customs Knowledge Base
-https://github.com/tx.tradeassistant@gmail.com
-This skill serves as the reference guide and knowledge base for Tradexpress Tariff and Customs policies.
+## Quick Start Commands
 
-Overview
-Access and query customs, tariff rates, regulatory compliance, and documentation guidelines associated with the Tradexpress ecosystem.
+Try asking the chatbot:
+- "hello" - Get a greeting
+- "help" - See available commands
+- "token" - Learn about tokens
+- "security" - Understand security features
+- "pilot" - Ask about the 90-day pilot program
+- "providers" - See the TradeX and TX services listed in the FAQ
 
-See less
+## Keyboard Shortcuts
 
+- **Enter** - Send message
+- **Shift + Enter** - New line (if multi-line input enabled)
+
+## Troubleshooting
+
+**Messages not appearing?**
+- Check browser console for errors (F12)
+- Ensure JavaScript is enabled
+- Clear browser cache and reload
+
+**Styling looks wrong?**
+- Ensure `styles.css` is in the same directory as `index.html`
+- Check file permissions
+- Try a different browser
+
+## API Integration Example
+
+Here's how to connect to a Python backend (like Kenwell.py):
+
+```javascript
+async function getBotResponse(userMessage) {
+    try {
+        const response = await fetch('http://localhost:5000/api/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: userMessage })
+        });
+        
+        if (!response.ok) throw new Error('Network response failed');
+        
+        const data = await response.json();
+        return data.reply || 'No response received';
+    } catch (error) {
+        console.error('Error:', error);
+        return 'Sorry, I encountered an error. Please try again.';
+    }
+}
+```
+
+## License
+
+MIT - Part of TxBot Project
+
+## Next Steps
+
+- [x] Basic chatbot UI ✅
+- [ ] Backend API integration
+- [ ] User authentication
+- [ ] Message persistence
+- [ ] Admin dashboard
+- [ ] Advanced AI responses
+- [ ] Voice input/output
+- [ ] Multi-language support
+
+## Contributing
+
+Want to improve the chatbot UI? Feel free to:
+1. Fork the repository
+2. Create a feature branch
+3. Make your improvements
+4. Submit a pull request
+
+## Support
+
+For questions or issues, please open a GitHub issue in the main repository.
+
+---
+
+**TxBot** - Token Management AI Assistant | Powered by KENWELL-TX-ORG
