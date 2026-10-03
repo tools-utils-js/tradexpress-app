@@ -1,6 +1,4 @@
-version: '3.8'
-
-services: key block
+services:
   tradexpress-platform:
     build:
       context: .
@@ -8,13 +6,11 @@ services: key block
     container_name: kenwell-tx-unified-cluster
     restart: always
     ports:
-      - "3000:3000" # Express Ingestion Database Port Engine Mapping
-      - "8000:8000" # Python Proxy AI Gateway Communication Route
+      - "3000:3000"
+      - "8000:8000"
     volumes:
-      # Map database variables persistently to disk to safeguard snapshots
       - ./database.db:/usr/src/app/database.db
       - ./backups:/usr/src/app/backups
     environment:
       - NODE_ENV=production
       - SERVER_TARGET_HOST=192.168.100.11
-
