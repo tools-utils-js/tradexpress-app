@@ -1,55 +1,53 @@
-// ============================================
-// AUTOMATED HS CODE & TARIFF SYSTEM UTILITY
-// ============================================
-db.serialize(() => {
-  db.run(`
-    CREATE TABLE IF NOT EXISTS tariff_classifications (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      commodity_name TEXT,
-      base_hs_code TEXT,
-      ahtn_suffix TEXT,
-      ahtn_nomenclature TEXT UNIQUE,
-      region_scope TEXT DEFAULT 'ASEAN Zone',
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )
-  `);
-});
-
+// ==========================================
+// SECURE JWT TOKEN VERIFICATION MIDDLEWARE
+// ==========================================
 /**
- * POST /api/trade/classify
- * Processes inbound trade items and maps them to verified 8-digit nomenclature signatures
+ * Intercepts requests to enforce cryptographically signed session validation
  */
-app.post('/api/trade/classify', (req, res) => {
-  const { commodityName, baseHsCode, ahtnSuffix } = req.body;
-  
-  if (!commodityName || !baseHsCode || !ahtnSuffix) {
-    return res.status(400).json({ success: false, error: "Validation Fault: Missing HS Code criteria matrix inputs." });
+function authenticateJwtToken(req, res, next) {
+  // Extract token from the standard Authorization header format (Bearer <token>)
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) {
+    console.warn(`[SECURITY ALERT] Request blocked: Missing authentication token signature.`);
+    return res.status(401).json({ success: false, error: "Access Denied: Missing authorization token." });
   }
 
-  // Compile the parts into an absolute 8-digit precision AHTN tracking string (e.g., 081340.00)
-  const fullNomenclature = `${baseHsCode}.${ahtnSuffix}`;
+  try {
+    const [headerB64, payloadB64, signatureB64] = token.split('.');
+    const secret = "KENWELL_TX_CORE_HIGH_ENTROPY_SECRET_MATRIX_KEY_2026";
+    
+    // Re-verify the crypt signature validity locally
+    const verifiedSignature = crypto.createHmac('sha256', secret)
+      .update(`${headerB64}.${payloadB64}`)
+      .digest('base64url');
 
-  const insertQuery = `
-    INSERT INTO tariff_classifications (commodity_name, base_hs_code, ahtn_suffix, ahtn_nomenclature)
-    VALUES (?, ?, ?, ?)
-    ON CONFLICT(ahtn_nomenclature) DO UPDATE SET commodity_name = excluded.commodity_name
-  `;
+    if (verifiedSignature !== signatureB64) {
+      console.warn(`[SECURITY ALERT] Request blocked: Tampered or invalid cryptographic token signature detected.`);
+      return res.status(403).json({ success: false, error: "Access Denied: Invalid signature verification." });
+    }
 
-  db.run(insertQuery, [commodityName, baseHsCode, ahtnSuffix, fullNomenclature], function(err) {
+    // Decode token parameters to evaluate session expiration limits
+    const payload = JSON.parse(Buffer.from(payloadB64, 'base64url').toString());
+    if (payload.exp  {
+  const { uuid } = req.params;
+  const operator = req.operatorSession.username;
+  
+  console.log(`[SECURITY] Authorized node link verified for operator [${operator}] at hardware UUID: ${uuid}`);
+
+  const dbQueryString = "SELECT id, title, category, status FROM stories WHERE status = 'published' ORDER BY id DESC LIMIT 10";
+  db.all(dbQueryString, [], (err, rows) => {
     if (err) {
-      return res.status(500).json({ success: false, error: "Database mapping transaction exception." });
+      return res.status(500).json({ success: false, error: "Database transaction exception." });
     }
     
     res.json({
       success: true,
-      message: "AHTN classification successfully verified and persisted to ledger.",
-      match: {
-        id: this.lastID || 1,
-        commodity: commodityName,
-        hs_code: baseHsCode,
-        ahtn_nomenclature: fullNomenclature,
-        region_scope: "ASEAN Zone"
-      }
+      authenticatedNode: uuid,
+      verifiedOperator: operator,
+      count: rows.length,
+      data: rows
     });
   });
 });
