@@ -1,3 +1,70 @@
 ======== [TradExpress Sync Pipeline Starting: 20261005_140001] ========
 [✓] Environment variables loaded.
 [...] Initializing backup Git synchronization pass...
+[main 10c94c5] Auto-backup telemetry checkpoint sync: 20261005_140001
+ 60 files changed, 531 insertions(+), 230 deletions(-)
+ create mode 100644 .env.local
+ create mode 100644 .next/app-build-manifest.json
+ create mode 100644 .next/build-manifest.json
+ create mode 100644 .next/cache/webpack/client-development/0.pack.gz
+ create mode 100644 .next/cache/webpack/client-development/index.pack.gz
+ create mode 100644 .next/cache/webpack/client-production/0.pack
+ create mode 100644 .next/cache/webpack/client-production/1.pack
+ create mode 100644 .next/cache/webpack/client-production/2.pack
+ create mode 100644 .next/cache/webpack/client-production/3.pack
+ create mode 100644 .next/cache/webpack/client-production/4.pack
+ create mode 100644 .next/cache/webpack/client-production/index.pack
+ create mode 100644 .next/cache/webpack/client-production/index.pack.old
+ create mode 100644 .next/cache/webpack/edge-server-production/0.pack
+ create mode 100644 .next/cache/webpack/edge-server-production/index.pack
+ create mode 100644 .next/cache/webpack/server-production/0.pack
+ create mode 100644 .next/cache/webpack/server-production/1.pack
+ create mode 100644 .next/cache/webpack/server-production/2.pack
+ create mode 100644 .next/cache/webpack/server-production/3.pack
+ create mode 100644 .next/cache/webpack/server-production/4.pack
+ create mode 100644 .next/cache/webpack/server-production/5.pack
+ create mode 100644 .next/cache/webpack/server-production/6.pack
+ create mode 100644 .next/cache/webpack/server-production/7.pack
+ create mode 100644 .next/cache/webpack/server-production/index.pack
+ create mode 100644 .next/cache/webpack/server-production/index.pack.old
+ create mode 100644 .next/package.json
+ create mode 100644 .next/react-loadable-manifest.json
+ create mode 100644 .next/server/app-paths-manifest.json
+ create mode 100644 .next/server/interception-route-rewrite-manifest.js
+ create mode 100644 .next/server/middleware-build-manifest.js
+ create mode 100644 .next/server/middleware-manifest.json
+ create mode 100644 .next/server/middleware-react-loadable-manifest.js
+ create mode 100644 .next/server/next-font-manifest.js
+ create mode 100644 .next/server/next-font-manifest.json
+ create mode 100644 .next/server/pages-manifest.json
+ create mode 100644 .next/server/server-reference-manifest.js
+ create mode 100644 .next/server/server-reference-manifest.json
+ create mode 100644 .next/static/chunks/polyfills.js
+ create mode 100644 .next/static/development/_buildManifest.js
+ create mode 100644 .next/static/development/_ssgManifest.js
+ create mode 100644 .next/trace
+ create mode 100644 .next/types/package.json
+ create mode 100644 app/providers.tsx
+ create mode 100644 backups/sync_log.txt
+ create mode 100644 components/workspace/overview/HeroBanner.tsx
+ create mode 100644 components/workspace/overview/PreviewGrid.tsx
+ create mode 100644 components/workspace/overview/QuickActions.tsx
+ create mode 100644 next-env.d.ts
+ create mode 100644 pages/404.tsx
+ create mode 100644 pages/_app.tsx
+ create mode 100644 pages/_error.tsx
+ create mode 100644 pages/index.tsx
+ create mode 100644 src/.env
+ create mode 100644 src/app/layout.tsx
+ create mode 100644 src/components/PostHogPageView.tsx
+remote: 
+remote: GitHub found 102 vulnerabilities on txchiefcybernetics-lang/tradexpress-app's default branch (7 critical, 37 high, 46 moderate, 12 low). To find out more, visit:        
+remote:      https://github.com/txchiefcybernetics-lang/tradexpress-app/security/dependabot        
+remote: 
+To github.com:txchiefcybernetics-lang/tradexpress-app.git
+   02cde89..10c94c5  main -> main
+[✓] Deployment checkpoint successfully pushed to GitHub repository snapshot.
+=================== [Sync Loop Complete] ===================
+======== [TradExpress Sync Pipeline Starting: 20261005_150001] ========
+[✓] Environment variables loaded.
+[...] Initializing backup Git synchronization pass...
