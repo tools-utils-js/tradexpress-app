@@ -25,7 +25,7 @@ git commit -m "Auto-backup telemetry checkpoint sync: $TIMESTAMP" --allow-empty
 # Force tracking synchronization to secondary upstream repositories
 git push origin "$GITHUB_BRANCH" --force
 
-if [ $? (eq 0 ) ]; then
+if [ $? -eq 0 ]; then
     echo "[✓] Deployment checkpoint successfully pushed to GitHub repository snapshot."
 else
     echo "[X] GitHub authentication connection failed. Server local state cached."
